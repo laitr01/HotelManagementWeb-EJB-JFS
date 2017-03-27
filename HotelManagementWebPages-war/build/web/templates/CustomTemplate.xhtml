@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600,700' rel='stylesheet' type='text/css'/>
+        <link href="http://maps.google.com/maps/api/js?sensor=false"/>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAg6SwXnrFc1rAWK8yrAGn_7uhoLh5EPjQ&amp;callback=myMap"></script>
+
+
+
+
+        <!-- Stylesheets -->
+        <h:outputStylesheet name="css/animate.css"/>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <h:outputStylesheet name="css/font-awesome.css" />
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/font-awesome.min.css"/>
+        <h:outputStylesheet name="css/owl.carousel.css"/>
+        <h:outputStylesheet name="css/owl.theme.css"/>
+        <h:outputStylesheet name="css/prettyPhoto.css"/>
+        <h:outputStylesheet name="css/smoothness/jquery-ui-1.10.4.custom.min.css"/>
+        <h:outputStylesheet name="css/rs-plugin/css/settings.css"/>
+        <h:outputStylesheet name="css/theme.css"/>
+        <h:outputStylesheet name="css/colors/turquoise.css"/>
+        <h:outputStylesheet name="css/responsive.css"/>
+
+        <link rel="shortcut icon" href="#{resource['assets/favicon.ico']}"/>        
+
+        <!-- Javascripts --> 
+        <h:outputScript name="js/jquery-1.11.0.min.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/bootstrap-hover-dropdown.min.js"/>
+        <h:outputScript name="js/owl.carousel.min.js"/>
+        <h:outputScript name="js/jquery.parallax-1.1.3.js"/>
+        <h:outputScript name="js/jquery.nicescroll.js"/>
+        <h:outputScript name="js/jquery.prettyPhoto.js"/>
+        <h:outputScript name="js/jquery-ui-1.10.4.custom.min.js"/>
+        <h:outputScript name="js/jquery.jigowatt.js"/>
+        <h:outputScript name="js/jquery.sticky.js"/>
+        <h:outputScript name="js/waypoints.min.js"/>
+        <h:outputScript name="js/jquery.isotope.min.js"/>
+        <h:outputScript name="js/jquery.gmap.min.js"/>
+        <h:outputScript name="rs-plugin/js/jquery.themepunch.plugins.min.js"/>
+        <h:outputScript name="rs-plugin/js/jquery.themepunch.revolution.min.js"/>
+        <h:outputScript name="js/custom.js"/>
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+              <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </h:head>
+    <body>
+        <header>
+            <ui:insert name="header">
+                <ui:include src="/templates/header.xhtml"/>
+            </ui:insert>
+        </header>
+
+        <div id="container">
+            <ui:insert name="content" >
+                <ui:include src="/templates/content.xhtml" />
+            </ui:insert>
+        </div>
+        <footer id="footer">
+            <ui:insert name="footer" >
+                <ui:include src="/templates/footer.xhtml" />
+            </ui:insert>
+        </footer>
+    </body>
+</html>

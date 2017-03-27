@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </head>
+    <body>
+        <div class="container">
+            <f:view>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <h:form>
+                            <h:commandLink action="insert">Insert new employee</h:commandLink>
+                        </h:form>
+                        <div class="col-lg-8">
+                            <h:form>
+                                <h:dataTable class="table" var="room" value="#{roomMB.list}">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Employee ID"/>
+                                        </f:facet>
+                                        <h:outputText value="#{room.roomID}"/>
+                                    </h:column>
+
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>   
+            </f:view>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../templates/templatecss.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core"
+                >
+    <ui:define name="content">
+        <body class="login">
+            <div>
+                <a class="hiddenanchor" id="signup"></a>
+                <a class="hiddenanchor" id="signin"></a>
+
+                <div class="login_wrapper">
+                    <div class="animate form login_form">
+                        <section class="login_content">
+                            <h:form>
+                                <h1>Login Form</h1>
+                                <div>
+                                    <h:inputText a:type="text" class="form-control" a:placeholder="Username"/>
+
+                                </div>
+                                <div>
+                                    <h:inputText a:type="text" class="form-control" a:placeholder="Password"/>
+
+                                </div>
+                                <div>
+                                    <h:commandButton class="btn btn-default submit" value="Login"/>
+                                    <a class="reset_pass" href="#">Lost your password?</a>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                                <div class="separator">
+                                    <p class="change_link">New to site?
+                                        <a href="#signup" class="to_register"> Create Account </a>
+                                    </p>
+
+                                    <div class="clearfix"></div>
+                                    <br />
+
+                                    <div>
+                                        <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                                        <p>©2016 All Rights Reserved. HotelManagement Projcet 4!</p>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </section>
+                    </div>
+
+                    <div id="register" class="animate form registration_form">
+                        <section class="login_content">
+                            <h:form>
+                                <h1>Create Account</h1>
+                                <div>
+                                    <h:inputText a:type="text" class="form-control" a:placeholder="Username" a:required="required" />
+
+                                </div>
+                                <div>
+                                    <h:inputSecret a:type="text" class="form-control" a:placeholder="Password" a:required="required" />
+
+                                </div>
+                                <div class="input-group date" id="datetimepicker1">
+                                    <h:inputText styleClass="datepicker" class="form-control" a:required="required" />
+                                    
+                                    <script type="text/javascript">
+    //For calendar
+    $(".datepicker").datepicker({
+        inline: true,
+        showWeek: true,
+        firstDay: 1
+    });
+
+</script>
+                                </div>
+                                
+                                <div>
+                                    <h:inputText a:type="text" class="form-control" a:placeholder="Email" a:required="required" />
+
+                                </div>
+                                <div>
+                                    <h:selectOneRadio class="radio-inline" value="gender" a:checked="checked">
+                                        <f:selectItem itemValue="M" itemLabel="Male" />                                        
+                                    </h:selectOneRadio>
+
+                                    <h:selectOneRadio class="radio-inline" value="gender">
+                                        <f:selectItem itemValue="F" itemLabel="Female" />
+                                    </h:selectOneRadio>
+                                </div>
+                                <div>
+                                    <h:commandButton class="btn btn-default submit" value="Submit"/>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                                <div class="separator">
+                                    <p class="change_link">Already a member ?
+                                        <a href="#signin" class="to_register"> Log in </a>
+                                    </p>
+
+                                    <div class="clearfix"></div>
+                                    <br />
+
+                                    <div>
+                                        <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                                        <p>©2016 All Rights Reserved. HotelManagement Projcet 4!</p>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </ui:define>
+
+</ui:composition>
