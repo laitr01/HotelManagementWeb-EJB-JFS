@@ -44,7 +44,7 @@ public class ReservationDetail implements Serializable {
     private Date date;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Rate", precision = 19, scale = 4)
-    private BigDecimal rate;
+    private Double rate;
     @JoinColumn(name = "ReservationID", referencedColumnName = "ReservationID", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Reservation reservation;
@@ -53,6 +53,13 @@ public class ReservationDetail implements Serializable {
     private Rooms rooms;
 
     public ReservationDetail() {
+    }
+
+    public ReservationDetail(Date date, Double rate, Reservation reservation, Rooms rooms) {
+        this.date = date;
+        this.rate = rate;
+        this.reservation = reservation;
+        this.rooms = rooms;
     }
 
     public ReservationDetail(ReservationDetailPK reservationDetailPK) {
@@ -79,11 +86,11 @@ public class ReservationDetail implements Serializable {
         this.date = date;
     }
 
-    public BigDecimal getRate() {
+    public Double getRate() {
         return rate;
     }
 
-    public void setRate(BigDecimal rate) {
+    public void setRate(Double rate) {
         this.rate = rate;
     }
 

@@ -12,6 +12,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,11 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "News.findByDatePost", query = "SELECT n FROM News n WHERE n.datePost = :datePost")})
 public class News implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NewsID", nullable = false)
     private Integer newsID;
+    @Basic(optional = false)
+    @NotNull
     @Size(max = 50)
     @Column(name = "NewsTitle", length = 50)
     private String newsTitle;
@@ -54,10 +57,18 @@ public class News implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datePost;
     @JoinColumn(name = "EmployeeID", referencedColumnName = "EmployeeID", nullable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Employee employeeID;
 
     public News() {
+    }
+
+    public News( String newsTitle, String imageUri, Date datePost, Employee employeeID) {
+        
+        this.newsTitle = newsTitle;
+        this.imageUri = imageUri;
+        this.datePost = datePost;
+        this.employeeID = employeeID;
     }
 
     public News(Integer newsID) {

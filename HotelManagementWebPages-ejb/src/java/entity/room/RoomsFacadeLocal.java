@@ -30,4 +30,8 @@ public interface RoomsFacadeLocal {
 
     int count();
     
+    boolean searchRoomType(int roomtype);
+    
+    boolean searchRoomName(String rooname);
+    
 }

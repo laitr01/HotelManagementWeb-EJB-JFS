@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../templates/CustomTemplateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <div class="container body">
+            <div class="main_container">
+
+
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+
+                                        <h:form class="form-horizontal form-label-left" enctype="multipart/form-data">
+
+                                            <span class="section">Order Services</span>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Room Name <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:selectOneMenu class="form-control col-md-7 col-xs-12" value = "#{serviceDetailMB.reservationid}"> 
+                                                        <f:selectItems itemValue="#{res.reservationID}" value="#{serviceDetailMB.reservationForServices()}" itemLabel="#{res.roomID.roomName}" var="res" /> 
+                                                         
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Service name: <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:selectOneMenu class="form-control col-md-7 col-xs-12" value = "#{serviceDetailMB.serviceid}" > 
+                                                        <f:selectItems itemValue="#{ser.serviceID}" value="#{Services.showall()}" itemLabel="#{ser.serviceName}" var="ser" /> 
+                                                         
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Quantity<span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText a:type="number" class="form-control col-md-7 col-xs-12" value="#{serviceDetailMB.quantity}"/>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date order
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:outputLabel  class="form-control col-md-7 col-xs-12" value="#{reservationMB.convertDateToString(serviceDetailMB.generateCurrent())}"/>
+                                                </div>
+                                            </div>
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <h:commandButton  class="btn btn-success" value="Add" type="submit" action="#{serviceDetailMB.insertServiceDetail()}"/>
+                                                    <h:commandButton  class="btn btn-success" value="Reset" type="reset"/>
+                                                    <button class="btn btn-success" value="Add" type="button" onclick="location.href = '#{request.contextPath}/faces/admin/tableRoom.xhtml'">Back</button>
+                                                </div>
+                                            </div>
+                                            <h:messages></h:messages>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+
+
+</ui:composition>

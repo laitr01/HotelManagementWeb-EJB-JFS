@@ -30,4 +30,8 @@ public interface ReservationDetailFacadeLocal {
 
     int count();
     
+    ReservationDetail findResDetailByResId(int resId);
+    
+    ReservationDetail findResDetailByResIdAndRoomId(int resId, int roomId);
+    
 }

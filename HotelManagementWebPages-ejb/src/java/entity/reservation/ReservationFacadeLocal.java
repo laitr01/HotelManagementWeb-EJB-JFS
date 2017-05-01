@@ -6,6 +6,7 @@
 
 package entity.reservation;
 
+import entity.room.Rooms;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,11 @@ public interface ReservationFacadeLocal {
     List<Reservation> findRange(int[] range);
 
     int count();
+    
+    List<Rooms> getAllRooms();
+    
+    List<Reservation> getUserReservation(String email);
+
+    boolean updateStatus(Reservation reservation);
     
 }

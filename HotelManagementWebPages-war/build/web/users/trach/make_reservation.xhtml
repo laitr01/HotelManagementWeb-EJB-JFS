@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../../templates/CustomTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"   
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <ui:define name="content">
+        <!-- Rooms -->
+        <section class="rooms mt50">
+            <div class="container">
+                <div class="row">
+                    <c:if test="#{reservationMB.listBookRoom()==null}" >
+                        <h3>You dont have any reservation. Click <a href="#{request.contextPath}/faces/index.xhtml">here</a> to make one.</h3>
+                    </c:if>
+                    <c:if test="#{reservationMB.listBookRoom()!=null}" >
+                        <div class="col-sm-12">
+                            <h2 class="lined-heading"><span>Your list rooms</span></h2>
+                        </div>                        
+                        <!-- Room -->
+                        <c:forEach var="room" items="#{reservationMB.listBookRoom()}">
+                            <div class="col-sm-4">
+                                <h:form >
+                                    <div class="room-thumb"> <img src="#{request.contextPath}/#{room.roomID.image1}" alt="#{room.roomID.roomName}" class="img-responsive" />
+                                        <div class="mask">
+                                            <div class="main">
+                                                <h5>#{reservationMB.convertDateToString(room.startDate)} 
+                                                    - #{reservationMB.convertDateToString(room.endDate)}</h5>
+                                                <div class="price">#{room.roomID.roomName}</div>
+                                            </div>
+                                            <div class="content">
+                                                <p><span>A modern hotel room in Star Hotel</span> 
+                                                    Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. 
+                                                    malesuada metus.</p>
+                                                <c:if test="#{!reservationMB.checkResInList(room)}">
+                                                    <h:commandButton action="#{reservationMB.addReservationToList(room)}" a:class="btn btn-primary btn-block" a:value="Add To List" /> 
+                                                </c:if>                                            
+                                                <c:if test="#{reservationMB.checkResInList(room)}">
+                                                    <h:commandButton a:type="submit" action="#{reservationMB.removeFromListRes(room)}" a:class="btn btn-primary btn-block" a:value="Remove From List" /> 
+                                                </c:if> 
+                                                <a href="RoomDetail.xhtml" class="btn btn-primary btn-block">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:form>
+
+                            </div>
+                        </c:forEach>
+                        <!-- Room -->                      
+                    </c:if>
+                </div>
+                <div class="row" style="margin-top: 20px; alignment-adjust: central;">
+                    <div class="col-sm-12">
+                        <c:if test="#{reservationMB.checkListBookRoom()>0}">
+                            <h:form>
+                                <h:commandButton a:type="submit" 
+                                             action="#{reservationMB.makeReservation()}" a:class="btn btn-primary btn-block" a:value="Book Room" />  
+                            </h:form>                            
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </ui:define>
+</ui:composition>
+

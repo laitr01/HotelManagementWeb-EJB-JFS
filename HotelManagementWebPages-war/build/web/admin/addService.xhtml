@@ -21,25 +21,21 @@
                                 <div class="x_panel">
 
                                     <div class="x_content">
-
+                                        <f:view>
                                         <h:form class="form-horizontal form-label-left">
 
 
                                             <span class="section">Add New Room</span>
 
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">ServiceID <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                     <h:inputText class="form-control col-md-7 col-xs-12" id="id" a:required="required" />
-                                                    
-                                                </div>
-                                            </div>
+                                           
                                             <div class="item form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">ServiceName <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <h:inputText class="form-control col-md-7 col-xs-12" required="true" />
+                                                    <h:inputText class="form-control col-md-7 col-xs-12" required="true" id="serviceName" value="#{Services.curServices.serviceName}"
+                                                                  requiredMessage="Name Not Empty" validatorMessage="Name Length Is 3"
+                                                                  />
+                                                     <h:message for="serviceName"/>
                                                     
                                                 </div>
                                             </div>
@@ -47,18 +43,22 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Price <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <h:inputText class="form-control col-md-7 col-xs-12"/>
+                                                    <h:inputText class="form-control col-md-7 col-xs-12" id="price" value="#{Services.curServices.price}"
+                                                                  requiredMessage="Price Not Empty" validatorMessage="Price Length Is 2" required="true" />
+                                                     <h:message for="price"/>
                                                 </div>
                                             </div>
                                             
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
                                                 <div class="col-md-6 col-md-offset-3">
-                                                     <h:commandButton type="submit" class="btn btn-primary" value="Add"/>
+                                                    <h:commandButton  type="submit" class="btn btn-primary" value="addService" action="#{Services.create()}"/>
                                                     <h:commandButton type="reset" class="btn btn-success" value="Reset"/>
+                                                    <h:commandButton type="submit" class="btn btn-primary" value="updateService" action="#{Services.update()}"/>
                                                 </div>
                                             </div>
                                         </h:form>
+                                        </f:view>
                                     </div>
                                 </div>
                             </div>

@@ -6,13 +6,15 @@
 
 package entity.feedback;
 
-import entity.employee.Employee;
 import entity.customer.Customer;
+import entity.employee.Employee;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -41,15 +43,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Feedback.findByFeedback", query = "SELECT f FROM Feedback f WHERE f.feedback = :feedback")})
 public class Feedback implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "FeedbackID", nullable = false)
     private Integer feedbackID;
-    @Column(name = "DateReceive")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Basic(optional = false)
+    
+    
+    @Column(name = "DateReceive", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dateReceive;
-    @Column(name = "DateFeedback")
+    @Basic(optional = false)
+    
+    @Column(name = "DateFeedback", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateFeedback;
     @Size(max = 50)
@@ -66,6 +72,30 @@ public class Feedback implements Serializable {
     private Employee employeeID;
 
     public Feedback() {
+    }
+    
+    public Feedback(Customer cusID,Date dateFeedback, String question) {
+        
+        this.customerID=cusID;
+        this.dateFeedback = dateFeedback;
+        this.question=question;
+    }
+    public Feedback(Employee empID,Date datereceive, String feedback) {
+        
+        this.employeeID=empID;
+        this.dateReceive = datereceive;
+        this.feedback=feedback;
+    }
+    
+
+    public Feedback(Integer feedbackID, Date dateReceive, Date dateFeedback, String question, String feedback, Customer customerID, Employee employeeID) {
+        this.feedbackID = feedbackID;
+        this.dateReceive = dateReceive;
+        this.dateFeedback = dateFeedback;
+        this.question = question;
+        this.feedback = feedback;
+        this.customerID = customerID;
+        this.employeeID = employeeID;
     }
 
     public Feedback(Integer feedbackID) {

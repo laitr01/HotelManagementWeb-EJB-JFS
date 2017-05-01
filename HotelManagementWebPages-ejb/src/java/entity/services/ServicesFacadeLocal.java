@@ -29,5 +29,10 @@ public interface ServicesFacadeLocal {
     List<Services> findRange(int[] range);
 
     int count();
+
+    List<Services> searchName(String nameS);
+
+  
+   
     
 }

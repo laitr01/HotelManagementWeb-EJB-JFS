@@ -1,0 +1,137 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../../templates/templatecss.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core"
+
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="content">
+        <body class="login">
+            <div>
+
+
+                <div class="login_wrapper">
+
+                    <section class="login_content">
+                        <h:form>
+
+                            <h1>Create Account</h1>
+
+                            <div>
+
+                                <h:inputText a:type="email" class="form-control" a:placeholder="Email" a:required="required" value="#{customerMB.email}" />
+
+
+                            </div>
+                            <div>
+                                <h:inputText a:type="text" class="form-control" a:placeholder="FullName" value="#{customerMB.fullname}" />
+
+                            </div>
+                            <div>
+                                <h:inputSecret a:pattern="[a-zA-Z0-9]+" title="PassWord cannot white space"  a:id="password" class="form-control" a:placeholder="Password" a:required="required" value="#{customerMB.password}" a:minlength="6" />
+
+                            </div>
+                            <div>
+                                <h:inputSecret a:id="confirm_password" class="form-control" a:placeholder="ConfirmPass" a:required="required" />
+                                <script>
+                                    var password = document.getElementById("password")
+                                            , confirm_password = document.getElementById("confirm_password");
+
+                                    function validatePassword() {
+                                        if (password.value != confirm_password.value) {
+                                            confirm_password.setCustomValidity("Passwords Don't Match");
+                                        } else {
+                                            confirm_password.setCustomValidity('');
+                                        }
+                                    }
+
+                                    password.onchange = validatePassword;
+                                    confirm_password.onkeyup = validatePassword;
+                                </script>
+
+                            </div>
+
+                            <div>
+                                <div style="margin-bottom: 15px;">
+                                    <b:dateTimePicker a:style="margin-bottom: -2px" mode="showbutton" 
+                                                      value="#{customerMB.dob}"
+                                                      a:placeholder="Date of Birth" show-icon="true" 
+                                                      show-date="true" use-current="true"
+                                                      show-time="false"
+                                                  >
+                                     
+                                    </b:dateTimePicker>
+                                </div>
+
+                            </div>
+                            <div>
+                                <h:selectOneRadio id="console" a:required="required" value="#{customerMB.gender}" a:style="margin-right: 10px">
+                                    <f:selectItem itemLabel="Male" itemValue="M"/>
+                                    <f:selectItem itemLabel="Female" itemValue="F" />
+
+                                </h:selectOneRadio>
+
+                            </div> 
+
+                            <div>
+                                <h:inputSecret a:type="text" a:pattern="[0-9]{9,10}" class="form-control" style ="margin-bottom: 20px;" title="Identifier must 9-10 number" a:placeholder="Person Identifier" value="#{customerMB.identify}" a:required="required"/>
+
+                            </div>
+
+                            <div>
+                                <h:inputSecret a:type="text" a:pattern="[0]{1}[1,9]{1}[0-9]{8,9}" title="Phone number with format" class="form-control"
+                                               style ="margin-bottom: 20px;" a:placeholder="Phone"  value="#{customerMB.phone}" a:required="required"/>
+
+                            </div>
+
+                            <div>
+                                <h:inputText a:type="text" class="form-control" a:placeholder="Company" value="#{customerMB.company}" />
+
+                            </div>
+
+
+                            <div>
+                                <h:inputTextarea a:type="textarea" class="form-control" a:placeholder="Address" value="#{customerMB.address}" style ="margin-bottom: 20px;"/>
+
+                            </div>
+
+
+
+
+                            <div>
+                                <h:commandButton  class="btn btn-success" value="Rigister" type="submit" action="#{customerMB.insert()}"/>
+                                <h:commandButton  class="btn btn-success" value="Reset" type="reset"/>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="separator">
+                                <p class="change_link">Already a member ?
+                                    <a href="#{request.contextPath}/faces/users/vu/login.xhtml"> Log in </a>
+                                </p>
+
+                                <div class="clearfix"></div>
+                                <br />
+                                <b:messages></b:messages>
+                                <div>
+                                    <div id="logo"> 
+                                        <h:graphicImage id="default-logo" library="images" name="logo.png" alt="Starhotel" style="height:44px;"/> 
+                                    </div>
+                                    <p>©2017 All Rights Reserved. HotelManagement Projcet 4!</p>
+                                </div>
+                            </div>
+                        </h:form>
+                    </section>
+
+
+
+
+
+                </div>
+            </div>
+        </body>
+    </ui:define>
+
+</ui:composition>

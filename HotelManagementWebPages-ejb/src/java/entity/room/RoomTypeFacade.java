@@ -7,6 +7,7 @@
 package entity.room;
 
 import entity.AbstractFacade;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,7 @@ public class RoomTypeFacade extends AbstractFacade<RoomType> implements RoomType
     public RoomTypeFacade() {
         super(RoomType.class);
     }
+    
+    
     
 }

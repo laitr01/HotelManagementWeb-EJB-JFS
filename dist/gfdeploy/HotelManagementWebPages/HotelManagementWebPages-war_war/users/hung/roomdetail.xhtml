@@ -4,6 +4,9 @@
                 template="./../../templates/CustomTemplate.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 >
 
 
@@ -37,20 +40,19 @@
                 <section class="standard-slider room-slider">
                     <div class="col-sm-12 col-md-8">
                         <div id="owl-standard" class="owl-carousel">
-                            <div class="item"> <a href="images/rooms/slider/750x481.gif" data-rel="prettyPhoto[gallery1]"><img src="#{request.contextPath}/faces/resources/images/rooms/slider/750x481.gif" alt="Image 2" class="img-responsive"/></a> </div>
-                            <div class="item"> <a href="images/rooms/slider/750x481.gif" data-rel="prettyPhoto[gallery1]"><img src="#{request.contextPath}/faces/resources/images/rooms/slider/750x481.gif" alt="Image 2" class="img-responsive"/></a> </div>
+                            <div class="item"> <a href="#{request.contextPath}/#{roomMB.room.image1}" data-rel="prettyPhoto[gallery1]"><img src="#{request.contextPath}/#{roomMB.room.image1}" alt="#{roomMB.room.roomName}" class="img-responsive" /></a> </div>
+                            <div class="item"> <a href="#{request.contextPath}/#{roomMB.room.image2}" data-rel="prettyPhoto[gallery1]"><img src="#{request.contextPath}/#{roomMB.room.image2}" alt="#{roomMB.room.roomName}" class="img-responsive" /></a> </div>
                         </div>
                     </div>
                 </section>
-
                 <!-- Reservation form -->
                 <section id="reservation-form" class="mt50 clearfix">
                     <div class="col-sm-12 col-md-4">
-                        <form class="reservation-vertical clearfix" role="form" method="post" action="php/reservation.php" name="reservationform" id="reservationform">
+                        <h:form class="reservation-vertical clearfix" a:role="form" a:method="post" a:action="php/reservation.php" a:name="reservationform" id="reservationform">
                             <h2 class="lined-heading"><span>Reservation</span></h2>
                             <div class="price">
-                                <h4>Double Room</h4>
-                                VND; 99,-<span> a night</span></div>
+                                <h4>#{roomMB.room.roomName}</h4>
+                                VND #{roomMB.room.roomTypeID.roomRate}<span> a night</span></div>
                             <div id="message"></div>
                             <!-- Error message display -->
                             <div class="form-group">
@@ -104,7 +106,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Book Now</button>
-                        </form>
+                        </h:form>
                     </div>
                 </section>
 
@@ -166,106 +168,48 @@
             </div>
         </div>
 
-        <!-- Other Rooms -->
         <section class="rooms mt50">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <h2 class="lined-heading"><span>Other rooms</span></h2>
-                    </div>
-                    <!-- Room -->
-                    <div class="col-sm-4">
-                        <div class="room-thumb"> <img src="images/rooms/356x228.gif" alt="room 1" class="img-responsive" />
-                            <div class="mask">
-                                <div class="main">
-                                    <h5>Double bedroom</h5>
-                                    <div class="price">VND; 99<span>a night</span></div>
-                                </div>
-                                <div class="content">
-                                    <p><span>A modern hotel room in Star Hotel</span> Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. 
-                                        malesuada metus.</p>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                                <li><i class="fa fa-check-circle"></i> Private balcony</li>
-                                                <li><i class="fa fa-check-circle"></i> Sea view</li>
-                                            </ul>
+                    <c:if test="#{roomMB.listAll()!=null}" >
+                        <div class="col-sm-12">
+                            <h2 class="lined-heading"><span>Random Rooms</span></h2>
+                        </div>
+                        <!-- Room -->
+                        <c:forEach var="room" items="#{roomMB.randomRooms()}">
+                            <div class="col-sm-4">
+                                <div class="room-thumb"> <img src="#{request.contextPath}/#{room.image1}" alt="#{room.roomName}" class="img-responsive" />
+                                    <div class="mask">
+                                        <div class="main">
+                                            <h5>#{room.roomName}</h5>
+                                            <div class="price">VND #{room.roomTypeID.roomRate}<span>a night</span></div>
                                         </div>
-                                        <div class="col-xs-6">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
-                                                <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                                <li><i class="fa fa-check-circle"></i> Bathroom</li>
-                                            </ul>
+                                        <div class="content">
+                                            <p><span>${room.roomTypeID.note}</span></p>  
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                                                        <li><i class="fa fa-check-circle"></i> Private balcony</li>
+                                                        <li><i class="fa fa-check-circle"></i> Sea view</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
+                                                        <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                                                        <li><i class="fa fa-check-circle"></i> Bathroom</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <a href="RoomDetail.xhtml" class="btn btn-primary btn-block">Read More</a>
                                         </div>
                                     </div>
-                                    <a href="room-detail.html" class="btn btn-primary btn-block">Book Now</a> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Room -->
-                    <div class="col-sm-4">
-                        <div class="room-thumb"> <img src="images/rooms/356x228.gif" alt="room 2" class="img-responsive" />
-                            <div class="mask">
-                                <div class="main">
-                                    <h5>King Size Bedroom </h5>
-                                    <div class="price">VND; 149<span>a night</span></div>
                                 </div>
-                                <div class="content">
-                                    <p><span>A modern hotel room in Star Hotel</span> Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. 
-                                        malesuada metus.</p>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                                <li><i class="fa fa-check-circle"></i> Private balcony</li>
-                                                <li><i class="fa fa-check-circle"></i> Sea view</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
-                                                <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                                <li><i class="fa fa-check-circle"></i> Bathroom</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a href="room-detail.html" class="btn btn-primary btn-block">Book Now</a> </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Room -->
-                    <div class="col-sm-4">
-                        <div class="room-thumb"> <img src="images/rooms/356x228.gif" alt="room 3" class="img-responsive" />
-                            <div class="mask">
-                                <div class="main">
-                                    <h5>Single room</h5>
-                                    <div class="price">VND; 120<span>a night</span></div>
-                                </div>
-                                <div class="content">
-                                    <p><span>A modern hotel room in Star Hotel</span> Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. 
-                                        malesuada metus.</p>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                                <li><i class="fa fa-check-circle"></i> Private balcony</li>
-                                                <li><i class="fa fa-check-circle"></i> Sea view</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
-                                                <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                                <li><i class="fa fa-check-circle"></i> Bathroom</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a href="room-detail.html" class="btn btn-primary btn-block">Book Now</a> </div>
-                            </div>
-                        </div>
-                    </div>
+                        </c:forEach>
+                        <!-- Room -->
+                    </c:if>
                 </div>
             </div>
         </section>

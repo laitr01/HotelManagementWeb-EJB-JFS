@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../templates/CustomTemplateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <div class="container body">
+            <div class="main_container">
+
+
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+
+                                        <h:form class="form-horizontal form-label-left">
+
+
+                                            <span class="section">FeedBack</span>
+
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:outputText value="#{feedBackMB.fb.customerID.email}" class="form-control col-md-7 col-xs-12" a:type="hidden"/>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">DateReceive <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:outputText class="form-control col-md-7 col-xs-12" value="#{reservationMB.convertDateToString(feedBackMB.fb.dateFeedback)}" a:type="text" />
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <h:inputHidden class="form-control col-md-7 col-xs-12" value="#{feedBackMB.dateReceive}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:inputHidden>
+
+
+
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Question <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:outputFormat class="form-control col-md-7 col-xs-12" value="#{feedBackMB.fb.question}" />
+
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">FeedBack <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputTextarea class="form-control col-md-7 col-xs-12" value="#{feedBackMB.feedback}" />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <h:commandButton  class="btn btn-success" value="Save" type="submit" action="#{feedBackMB.update()}"/>
+                                                    <h:commandButton type="reset" class="btn btn-success" value="Reset"/>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+
+
+</ui:composition>

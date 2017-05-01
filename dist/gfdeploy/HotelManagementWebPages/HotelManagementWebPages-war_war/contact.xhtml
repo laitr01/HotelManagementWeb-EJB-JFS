@@ -3,10 +3,11 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./templates/CustomTemplate.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="content">
+        
         <div id="map">
             
 
@@ -59,12 +60,13 @@
                 <!-- Contact details -->
                 <section class="contact-details mt50">
                     <div class="col-md-4">
+                        
                         <h2 class="lined-heading"><span>Address</span></h2>
-                        <a href="/faces/images/contact/948x632.gif" data-rel="prettyPhoto"><img src="images/contact/361x235.gif" alt="Image 1" class="img-thumbnail img-responsive"/></a>
+                        
                         <address class="mt50">
                             <strong>Starhotel</strong><br/>
-                            795 Las Palmas<br/>
-                            Spain, CA 94107<br/>
+                            601/48 CMT8<br/>
+                            HCM, F15 Q10<br/>
                             <abbr title="Phone">P:</abbr> <a href="#">(123) 456-7890</a><br/>
                             <abbr title="Email">E:</abbr> <a href="#">mail@example.com</a><br/>
                             <abbr title="Website">W:</abbr> <a href="#">www.slashdown.nl</a><br/>
@@ -96,6 +98,5 @@
 
 
     </ui:define>
-
 
 </ui:composition>

@@ -6,6 +6,7 @@
 
 package entity.news;
 
+import entity.employee.Employee;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,13 @@ public interface NewsFacadeLocal {
     List<News> findRange(int[] range);
 
     int count();
+
+    List<News> searchFromId(int fromId);
+
+    List getViewNew(int idEmployee);
+
+    List<Employee> getEmployeeID(String userName);
+
+   
     
 }

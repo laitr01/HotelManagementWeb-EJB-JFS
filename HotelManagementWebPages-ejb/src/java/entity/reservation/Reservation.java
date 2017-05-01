@@ -7,9 +7,9 @@
 package entity.reservation;
 
 import entity.bill.Bill;
-import entity.services.ServiceDetail;
 import entity.customer.Customer;
 import entity.room.Rooms;
+import entity.services.ServiceDetail;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -18,6 +18,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -49,9 +51,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.status = :status")})
 public class Reservation implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ReservationID", nullable = false)
     private Integer reservationID;
     @Basic(optional = false)
@@ -94,6 +95,18 @@ public class Reservation implements Serializable {
         this.reservationID = reservationID;
     }
 
+    public Reservation(Date startDate, 
+            Date endDate, int numberOfPeople, BigDecimal paid, 
+            String status, Customer customerID, Rooms roomID) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.numberOfPeople = numberOfPeople;
+        this.paid = paid;
+        this.status = status;
+        this.customerID = customerID;
+        this.roomID = roomID;
+    }
+    
     public Reservation(Integer reservationID, Date startDate, Date endDate, int numberOfPeople) {
         this.reservationID = reservationID;
         this.startDate = startDate;
@@ -206,8 +219,16 @@ public class Reservation implements Serializable {
             return false;
         }
         Reservation other = (Reservation) object;
-        if ((this.reservationID == null && other.reservationID != null) || (this.reservationID != null && !this.reservationID.equals(other.reservationID))) {
+        if ((this.reservationID == null && other.reservationID != null) || 
+                (this.reservationID != null && !this.reservationID.equals(other.reservationID))) {
             return false;
+        }
+        //trach note - add bellow code for removing same reservation without id
+        if(this.reservationID == null && other.reservationID ==null){
+            return (this.roomID.getRoomID().intValue() == other.roomID.getRoomID().intValue())
+                    &&(this.startDate.getTime()==other.startDate.getTime())
+                    &&(this.endDate.getTime()== other.getEndDate().getTime()
+                    && this.roomID.getRoomTypeID().getRoomTypeID()== other.roomID.getRoomTypeID().getRoomTypeID());
         }
         return true;
     }

@@ -13,6 +13,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,15 +40,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ServiceDetail.findByDateOfUse", query = "SELECT s FROM ServiceDetail s WHERE s.dateOfUse = :dateOfUse")})
 public class ServiceDetail implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
     @Basic(optional = false)
-    @NotNull
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ServiceDetailID", nullable = false)
     private Integer serviceDetailID;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Price", precision = 19, scale = 4)
-    private BigDecimal price;
+    private Double price;
     @Column(name = "DateOfUse")
+    @Basic(optional = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfUse;
     @JoinColumn(name = "ReservationID", referencedColumnName = "ReservationID", nullable = false)
@@ -71,11 +73,11 @@ public class ServiceDetail implements Serializable {
         this.serviceDetailID = serviceDetailID;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../templates/CustomTemplateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <div class="container body">
+            <div class="main_container">
+
+
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+
+                                        <h:form class="form-horizontal form-label-left" enctype="multipart/form-data">
+
+                                            <span class="section">Edit Room</span>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">RoomType <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:selectOneMenu class="form-control col-md-7 col-xs-12" value = "#{roomMB.roomtype}"> 
+                                                        <f:selectItems itemValue="#{type.roomTypeID}" value="#{roomTypeMB.showRoom()}" itemLabel="#{type.roomTypeName}" var="type" /> 
+                                                         
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">RoomName <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText a:type="text" class="form-control col-md-7 col-xs-12" value="#{roomMB.room.roomName}" a:required="required"/>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Image 1<span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputFile class="form-control col-md-7 col-xs-12" value="#{roomMB.img1}"/>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Image 2<span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputFile  class="form-control col-md-7 col-xs-12" value="#{roomMB.img2}"/>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Image 3<span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputFile  class="form-control col-md-7 col-xs-12" value="#{roomMB.img3}"/>
+                                                </div>
+                                            </div>
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <h:commandButton  class="btn btn-success" value="Save" type="submit" action="#{roomMB.update()}"/>
+                                                    <h:commandButton  class="btn btn-success" value="Reset" type="reset"/>
+                                                    <button class="btn btn-success" value="Add" type="button" onclick="location.href = '#{request.contextPath}/faces/admin/tableRoom.xhtml'">Back</button>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+
+
+</ui:composition>

@@ -1,0 +1,90 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../../templates/CustomTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core"
+
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+        <div class="container body">
+            <div class="main_container">
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <c:if test="#{(reservationMB.listUsersReservation()!=null) and (reservationMB.listUsersReservation().size()>0)}">
+                                            <h:form style="margin-top: 20px;">
+                                                
+                                                <div class="table-responsive">
+                                                    
+                                                    <h:dataTable class="table table-bordered jambo_table" value="#{reservationMB.listUsersReservation()}"
+                                                                 var="o" >
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="Room Name" />
+                                                            </f:facet>                                                            
+                                                            <h:outputText value="#{o.roomID.roomName}"/>
+                                                          
+                                                        </h:column>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="Customer ID" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{o.customerID.fullName}"/>
+                                                        </h:column>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="Start date" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{reservationMB.convertDateToString(o.startDate)}"/>
+                                                        </h:column>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="End date" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{reservationMB.convertDateToString(o.endDate)}"/>
+                                                        </h:column>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="People No." />
+                                                            </f:facet>
+                                                            <h:outputText value="#{o.numberOfPeople}"/>
+                                                        </h:column>
+
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="Status" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{o.status}"/>
+                                                        </h:column>
+                                                       
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="responsive">Action</f:facet>  
+                                                                <h:commandButton action="#{reservationMB.deleteRes(o.reservationID)}" class="btn btn-primary" value="Remove" />                                                             
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </div>
+                                                 <h:messages class="alert alert-danger" style="font: sans-serif"></h:messages>
+                                            </h:form>
+                                        </c:if> 
+                                        <c:if test="#{reservationMB.listUsersReservation()==null || reservationMB.listUsersReservation().size()==0}">
+                                            <div style="margin: 20px;"><h3>You have not any reservation. Click <a href="#{request.contextPath}/faces/index.xhtml">here</a> to make one</h3></div>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../../templates/CustomTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="content">
+        <h2 align="center" class="center">Edit Information</h2>
+        <div class="container body">
+            <div class="main_container">
+
+
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+                                        <f:view>
+                                            <h:form class="form-horizontal form-label-left">
+                                                <div class="item form-group">
+
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputHidden value="#{customerMB.cusFromSession.customerID}" class="form-control col-md-7 col-xs-12" a:type="hidden"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputText a:required="required" a:type="email" value="#{customerMB.cusFromSession.email}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-3 col-sm-3 col-xs-6">
+
+
+                                                        <h:inputText a:id="checkin" value="#{customerMB.cusFromSession.dob}" class="form-control" a:placeholder="Check-in">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                        </h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:selectOneRadio id="console" value="#{customerMB.cusFromSession.gender}" a:style="margin-right: 10px" >
+                                                            <f:selectItem itemLabel="Male" itemValue="M"/>
+                                                            <f:selectItem itemLabel="Female" itemValue="F" />
+
+                                                        </h:selectOneRadio>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Person Identifier <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputText a:type="text" a:pattern="[0-9]{9,10}" class="form-control col-md-7 col-xs-12" title="Identifier must 9-10 number" a:placeholder="Person Identifier" value="#{customerMB.cusFromSession.personIdentifier}" a:required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputText a:type="text" a:pattern="[0]{1}[1,9]{1}[0-9]{8,9}" title="Phone number with format" class="form-control col-md-7 col-xs-12"
+                                                                        a:placeholder="Phone"  value="#{customerMB.cusFromSession.phone}" a:required="required"/>
+
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">FullName <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputText value="#{customerMB.cusFromSession.fullName}" class="form-control col-md-7 col-xs-12" a:type="text" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Company <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputText value="#{customerMB.cusFromSession.company}" class="form-control col-md-7 col-xs-12" a:type="text"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Address <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputTextarea a:type="textarea" value="#{customerMB.cusFromSession.address}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <h:commandButton  class="btn btn-primary" value="Save" type="submit" action="#{customerMB.UpdateCustomer(cus)}"/>
+                                                        <h:commandButton type="reset" class="btn btn-primary" value="Reset"/>
+                                                    </div>
+                                                </div>
+                                            </h:form>
+                                        </f:view>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

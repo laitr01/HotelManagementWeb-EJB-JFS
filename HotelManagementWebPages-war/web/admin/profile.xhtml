@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../templates/CustomTemplateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <div class="container body">
+            <div class="main_container">
+
+
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+
+                                        <h:form class="form-horizontal form-label-left">
+
+
+                                            <span class="section">PROFILE</span>
+
+                                            <div class="item form-group">
+
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputHidden value="#{employeeMB.empSession.employeeID}" class="form-control col-md-7 col-xs-12" a:type="hidden"/>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Name <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:outputText class="form-control col-md-7 col-xs-12" value="#{employeeMB.empSession.userName}" />
+
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{employeeMB.empSession.email}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                                    <h:outputText value="#{employeeMB.empSession.dob}" class="form-control col-md-7 col-xs-12">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+
+                                                    </h:outputText>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:outputText value="#{employeeMB.empSession.gender}" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <button class="btn btn-primary" value="Add" type="button" onclick="location.href = '#{request.contextPath}/faces/admin/updateadmin.xhtml'">Update</button>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+
+
+</ui:composition>

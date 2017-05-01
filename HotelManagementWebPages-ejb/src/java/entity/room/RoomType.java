@@ -8,10 +8,13 @@ package entity.room;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,12 +40,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "RoomType.findByRoomTypeName", query = "SELECT r FROM RoomType r WHERE r.roomTypeName = :roomTypeName"),
     @NamedQuery(name = "RoomType.findByRoomRate", query = "SELECT r FROM RoomType r WHERE r.roomRate = :roomRate"),
     @NamedQuery(name = "RoomType.findByNote", query = "SELECT r FROM RoomType r WHERE r.note = :note"),
-    @NamedQuery(name = "RoomType.findByNumOfPeople", query = "SELECT r FROM RoomType r WHERE r.numOfPeople = :numOfPeople")})
+    @NamedQuery(name = "RoomType.findByNumOfChild", query = "SELECT r FROM RoomType r WHERE r.numOfChild = :numOfChild"),
+    @NamedQuery(name = "RoomType.findByNumOfAdult", query = "SELECT r FROM RoomType r WHERE r.numOfAdult = :numOfAdult")})
 public class RoomType implements Serializable {
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "RoomRate", precision = 19, scale = 4)
+    private Double roomRate;
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "RoomTypeID", nullable = false)
     private Integer roomTypeID;
     @Basic(optional = false)
@@ -50,20 +57,39 @@ public class RoomType implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "RoomTypeName", nullable = false, length = 50)
     private String roomTypeName;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "RoomRate", precision = 19, scale = 4)
-    private BigDecimal roomRate;
-    @Size(max = 100)
-    @Column(name = "Note", length = 100)
+    @Size(max = 250)
+    @Column(name = "Note", length = 250)
     private String note;
-    @Column(name = "NumOfPeople")
-    private Integer numOfPeople;
+    @Column(name = "NumOfChild")
+    private Integer numOfChild;
+    @Column(name = "NumOfAdult")
+    private Integer numOfAdult;
     @OneToMany(mappedBy = "roomTypeID")
     private Collection<Rooms> roomsCollection;
 
     public RoomType() {
     }
 
+    public RoomType(Integer roomTypeID, String roomTypeName, 
+            Double roomRate, String note, Integer numOfChild, Integer numOfAdult) {
+        this.roomTypeID = roomTypeID;
+        this.roomTypeName = roomTypeName;
+        this.roomRate = roomRate;
+        this.note = note;
+        this.numOfChild = numOfChild;
+        this.numOfAdult = numOfAdult;
+    }
+    
+    public RoomType(String roomTypeName, 
+            Double roomRate, String note, Integer numOfChild, Integer numOfAdult) {
+        
+        this.roomTypeName = roomTypeName;
+        this.roomRate = roomRate;
+        this.note = note;
+        this.numOfChild = numOfChild;
+        this.numOfAdult = numOfAdult;
+    }
+    
     public RoomType(Integer roomTypeID) {
         this.roomTypeID = roomTypeID;
     }
@@ -89,13 +115,7 @@ public class RoomType implements Serializable {
         this.roomTypeName = roomTypeName;
     }
 
-    public BigDecimal getRoomRate() {
-        return roomRate;
-    }
-
-    public void setRoomRate(BigDecimal roomRate) {
-        this.roomRate = roomRate;
-    }
+    
 
     public String getNote() {
         return note;
@@ -105,12 +125,20 @@ public class RoomType implements Serializable {
         this.note = note;
     }
 
-    public Integer getNumOfPeople() {
-        return numOfPeople;
+    public Integer getNumOfChild() {
+        return numOfChild;
     }
 
-    public void setNumOfPeople(Integer numOfPeople) {
-        this.numOfPeople = numOfPeople;
+    public void setNumOfChild(Integer numOfChild) {
+        this.numOfChild = numOfChild;
+    }
+
+    public Integer getNumOfAdult() {
+        return numOfAdult;
+    }
+
+    public void setNumOfAdult(Integer numOfAdult) {
+        this.numOfAdult = numOfAdult;
     }
 
     @XmlTransient
@@ -146,5 +174,17 @@ public class RoomType implements Serializable {
     public String toString() {
         return "entity.RoomType[ roomTypeID=" + roomTypeID + " ]";
     }
+
+    public Double getRoomRate() {
+        return roomRate;
+    }
+
+    public void setRoomRate(Double roomRate) {
+        this.roomRate = roomRate;
+    }
+
+    
+
+    
     
 }

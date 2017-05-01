@@ -7,9 +7,11 @@
 package entity.room;
 
 import entity.AbstractFacade;
+import entity.employee.Employee;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,37 @@ public class RoomsFacade extends AbstractFacade<Rooms> implements RoomsFacadeLoc
     public RoomsFacade() {
         super(Rooms.class);
     }
+    
+    @Override
+    public boolean searchRoomType(int roomtype){
+        Query q = em.createQuery("SELECT r FROM RoomType r WHERE r.roomTypeID = :typeid");
+        try {
+            q.setParameter("typeid", roomtype);
+
+            RoomType rtype = (RoomType) q.getSingleResult();
+            if (rtype != null) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    
+    
+    @Override
+   public boolean searchRoomName(String rooname){
+        Query q = em.createQuery("SELECT r FROM Rooms r WHERE r.roomName = :roomName");
+        try {
+            q.setParameter("roomName", rooname);
+
+            Rooms rtype = (Rooms) q.getSingleResult();
+            if (rtype != null) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+           
     
 }

@@ -2,7 +2,7 @@
                 template="./../templates/CustomTemplateAdmin.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
@@ -19,10 +19,13 @@
                             <div class="title_right">
                                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search for..."/>
+
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button">Go!</button>
+
+
+
                                         </span>
+
                                     </div>
                                 </div>
                             </div>
@@ -35,49 +38,52 @@
 
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
-                                    
+
 
                                     <div class="x_content">
+                                        <f:view>
+                                            <h:form>
+                                                <div class="table-responsive">
 
-                                        <h:form>
-                                            <div class="table-responsive">
-
-
-                                                <h:dataTable class="table table-striped jambo_table" border="1" value=""
-                                                             var="o" >
-
-                                                    <h:column class="headings">
-                                                        <f:facet name="header" class="column-title">
-                                                            <h:outputText value="ServiceID" />
-                                                        </f:facet>
-                                                        <h:outputText value=""/>
-                                                    </h:column>
-                                                    <h:column class="headings">
-                                                        <f:facet name="header" class="column-title">
-                                                            <h:outputText value="ServiceName" />
-                                                        </f:facet>
-                                                        <h:outputText value=""/>
-                                                    </h:column>
-                                                    <h:column class="headings">
-                                                        <f:facet name="header" class="column-title">
-                                                            <h:outputText value="Price" />
-                                                        </f:facet>
-                                                        <h:outputText value=""/>
-                                                    </h:column>
                                                     
-                                                    
-                                                    <h:column class="headings">
-                                                        <f:facet name="header" class="responsive">Action</f:facet>
-                                                        <h:commandButton class="btn btn-primary" value="Update" type="button"/>
-                                                        <h:commandButton class="btn btn-primary" value="Delete" type="button"/>
-                                                    </h:column>
-                                                </h:dataTable>
+                                                    <h:dataTable a:id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" border="1"  value="#{Services.showall()}"
+                                                                 var="item" >
+
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="ServiceID" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.serviceID}"/>
+                                                        </h:column>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="ServiceName" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.serviceName}"/>
+                                                        </h:column>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="column-title">
+                                                                <h:outputText value="Price" />
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.price}"/>
+                                                        </h:column>
 
 
-                                            </div>
-                                            <button class="btn btn-primary" value="Add" type="button" onclick="location.href='#{request.contextPath}/faces/admin/addService.xhtml'">Add</button>
-                                        </h:form>
+                                                        <h:column class="headings">
+                                                            <f:facet name="header" class="responsive">Action</f:facet>
+                                                            <h:commandLink class="btn btn-primary" value="Update"  action="#{Services.ShowUpdate(item.serviceID)}"/>
+                                                            <h:commandLink value="Delete" 
+                                                                           action="#{Services.delete(item.serviceID)}" class="btn btn-primary"/>
+                                                        </h:column>
+                                                    </h:dataTable>
 
+
+                                                </div>
+
+                                                <h:commandLink value="Add" onclick="location.href = '#{request.contextPath}/faces/admin/addService.xhtml'" class="btn btn-primary"
+                                                               action="#{Services.displayCreate()}"/>
+                                            </h:form>
+                                        </f:view>
 
                                     </div>
                                 </div>
@@ -87,7 +93,11 @@
                 </div>
             </div>
         </div>
-
+        <script>
+            $(document).ready(function() {
+                $('#datatable-responsive').DataTable();
+            });
+        </script>
     </ui:define>
 
 

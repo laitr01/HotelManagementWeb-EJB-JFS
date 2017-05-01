@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity.services;
 
 import java.io.Serializable;
@@ -13,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,10 +39,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Services.findByServiceName", query = "SELECT s FROM Services s WHERE s.serviceName = :serviceName"),
     @NamedQuery(name = "Services.findByPrice", query = "SELECT s FROM Services s WHERE s.price = :price")})
 public class Services implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ServiceID", nullable = false)
     private Integer serviceID;
     @Basic(optional = false)
@@ -56,6 +57,13 @@ public class Services implements Serializable {
     private Collection<ServiceDetail> serviceDetailCollection;
 
     public Services() {
+    }
+
+    public Services(Integer serviceID, String serviceName, BigDecimal price, Collection<ServiceDetail> serviceDetailCollection) {
+        this.serviceID = serviceID;
+        this.serviceName = serviceName;
+        this.price = price;
+        this.serviceDetailCollection = serviceDetailCollection;
     }
 
     public Services(Integer serviceID) {
@@ -124,5 +132,5 @@ public class Services implements Serializable {
     public String toString() {
         return "entity.Services[ serviceID=" + serviceID + " ]";
     }
-    
+
 }

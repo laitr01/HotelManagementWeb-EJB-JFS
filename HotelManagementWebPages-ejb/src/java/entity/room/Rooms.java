@@ -14,6 +14,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -45,9 +47,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Rooms.findByImage3", query = "SELECT r FROM Rooms r WHERE r.image3 = :image3")})
 public class Rooms implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "RoomID", nullable = false)
     private Integer roomID;
     @Basic(optional = false)
@@ -77,6 +78,38 @@ public class Rooms implements Serializable {
 
     public Rooms() {
     }
+
+    public Rooms(String roomName, String image1, String image2, String image3, RoomType roomTypeID) {
+        
+        this.roomName = roomName;
+        this.roomStatus = "Available";
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        
+        this.roomTypeID = roomTypeID;
+    }
+    public Rooms(int roomid, String roomName, String image1, String image2, String image3, RoomType roomTypeID) {
+        this.roomID = roomid;
+        this.roomName = roomName;
+        this.roomStatus = "Available";
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        
+        this.roomTypeID = roomTypeID;
+    }
+    public Rooms(String roomName, String image1, String image2, String image3) {
+        
+        this.roomName = roomName;
+        this.roomStatus = "Available";
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        
+        
+    }
+    
 
     public Rooms(Integer roomID) {
         this.roomID = roomID;

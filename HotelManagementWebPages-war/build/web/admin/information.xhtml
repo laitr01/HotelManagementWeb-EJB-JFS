@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../templates/CustomTemplateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <div class="container body">
+            <div class="main_container">
+
+
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+
+                                        <f:view>
+                                            <h:form class="form-horizontal form-label-left">
+                                                <span class="section">PROFILE</span>
+                                                <div class="item form-group">
+
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:inputHidden value="#{customerMB.cus.customerID}" class="form-control col-md-7 col-xs-12" a:type="hidden"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{customerMB.cus.email}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">FullName <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{customerMB.cus.fullName}" class="form-control col-md-7 col-xs-12" />
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                                        <h:outputText value="#{customerMB.cus.dob}" class="form-control col-md-7 col-xs-12">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+
+                                                        </h:outputText>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{customerMB.cus.gender}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Person Identifier <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{customerMB.cus.personIdentifier}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{customerMB.cus.phone}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Company <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputText value="#{customerMB.cus.company}" class="form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Address <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputFormat value="#{customerMB.cus.address}" class="form-control col-md-7 col-xs-12" />
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <h:outputFormat value="#{customerMB.cus.status}" class="form-control col-md-7 col-xs-12" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <h:commandButton class="btn btn-primary" value="Lock" action="#{customerMB.lock()}"/>
+                                                        <h:commandButton class="btn btn-primary" value="Unlock" action="#{customerMB.unLock()}"/>
+
+                                                    </div>
+                                                </div>
+                                            </h:form>
+                                        </f:view>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+
+
+</ui:composition>

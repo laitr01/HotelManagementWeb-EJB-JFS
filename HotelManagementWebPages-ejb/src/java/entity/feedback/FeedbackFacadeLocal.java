@@ -6,6 +6,8 @@
 
 package entity.feedback;
 
+import entity.customer.Customer;
+import entity.employee.Employee;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,9 @@ public interface FeedbackFacadeLocal {
     List<Feedback> findRange(int[] range);
 
     int count();
-    
+
+    List<Feedback> searchFromId(int fromId);
+      List<Employee> getEmployeeID(String userName);
+
+    List<Customer> getCustomerID(String fullName);
 }

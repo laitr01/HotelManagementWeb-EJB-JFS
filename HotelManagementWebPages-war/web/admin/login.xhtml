@@ -4,111 +4,56 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
                 >
     <ui:define name="content">
         <body class="login">
             <div>
-                <a class="hiddenanchor" id="signup"></a>
-                <a class="hiddenanchor" id="signin"></a>
+
 
                 <div class="login_wrapper">
-                    <div class="animate form login_form">
-                        <section class="login_content">
-                            <h:form>
-                                <h1>Login Form</h1>
-                                <div>
-                                    <h:inputText a:type="text" class="form-control" a:placeholder="Username"/>
 
-                                </div>
-                                <div>
-                                    <h:inputText a:type="text" class="form-control" a:placeholder="Password"/>
+                    <section class="login_content">
 
-                                </div>
-                                <div>
-                                    <h:commandButton class="btn btn-default submit" value="Login"/>
-                                    <a class="reset_pass" href="#">Lost your password?</a>
-                                </div>
+                        <h:form id="form">
+                            <h1>Admin Login</h1>
+                            <div>
+                                <h:inputText a:type="text" value="#{employeeMB.username}" class="form-control" a:placeholder="Username"/>
 
-                                <div class="clearfix"></div>
+                            </div>
+                            <div>
+                                <h:inputSecret value="#{employeeMB.pass}" class="form-control" a:placeholder="Password"/>
 
-                                <div class="separator">
-                                    <p class="change_link">New to site?
-                                        <a href="#signup" class="to_register"> Create Account </a>
-                                    </p>
+                            </div>
+                            <div>
+                                <h:commandButton class="btn btn-default submit" value="Login" action="#{employeeMB.login()}"/>
 
-                                    <div class="clearfix"></div>
-                                    <br />
+                            </div>
 
-                                    <div>
-                                        <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                                        <p>©2016 All Rights Reserved. HotelManagement Projcet 4!</p>
-                                    </div>
-                                </div>
-                            </h:form>
-                        </section>
-                    </div>
-
-                    <div id="register" class="animate form registration_form">
-                        <section class="login_content">
-                            <h:form>
-                                <h1>Create Account</h1>
-                                <div>
-                                    <h:inputText a:type="text" class="form-control" a:placeholder="Username" a:required="required" />
-
-                                </div>
-                                <div>
-                                    <h:inputSecret a:type="text" class="form-control" a:placeholder="Password" a:required="required" />
-
-                                </div>
-                                <div class="input-group date" id="datetimepicker1">
-                                    <h:inputText styleClass="datepicker" class="form-control" a:required="required" />
-                                    
-                                    <script type="text/javascript">
-    //For calendar
-    $(".datepicker").datepicker({
-        inline: true,
-        showWeek: true,
-        firstDay: 1
-    });
-
-</script>
-                                </div>
-                                
-                                <div>
-                                    <h:inputText a:type="text" class="form-control" a:placeholder="Email" a:required="required" />
-
-                                </div>
-                                <div>
-                                    <h:selectOneRadio class="radio-inline" value="gender" a:checked="checked">
-                                        <f:selectItem itemValue="M" itemLabel="Male" />                                        
-                                    </h:selectOneRadio>
-
-                                    <h:selectOneRadio class="radio-inline" value="gender">
-                                        <f:selectItem itemValue="F" itemLabel="Female" />
-                                    </h:selectOneRadio>
-                                </div>
-                                <div>
-                                    <h:commandButton class="btn btn-default submit" value="Submit"/>
-                                </div>
+                            <div class="clearfix"></div>
+                            <b:messages></b:messages>
+                            
+                                <p class="change_link">New to site?
+                                    <a href="#{request.contextPath}/faces/users/vu/registeradmin.xhtml"> Create Account </a>
+                                </p>
 
                                 <div class="clearfix"></div>
+                                <br />
 
-                                <div class="separator">
-                                    <p class="change_link">Already a member ?
-                                        <a href="#signin" class="to_register"> Log in </a>
-                                    </p>
-
-                                    <div class="clearfix"></div>
-                                    <br />
-
-                                    <div>
-                                        <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                                        <p>©2016 All Rights Reserved. HotelManagement Projcet 4!</p>
+                                <div>
+                                     <div id="logo"> 
+                                        <h:graphicImage id="default-logo" library="images" name="logo.png" alt="Starhotel" style="height:44px;"/> 
                                     </div>
+                                    <p>©2017 All Rights Reserved. HotelManagement Projcet 4!</p>
                                 </div>
-                            </h:form>
-                        </section>
-                    </div>
+                           
+                        </h:form>
+                    </section>
+
+
+
+
+
                 </div>
             </div>
         </body>

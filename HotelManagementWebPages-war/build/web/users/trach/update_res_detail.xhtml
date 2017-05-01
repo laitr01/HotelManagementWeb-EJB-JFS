@@ -1,0 +1,52 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../../templates/CustomTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core"
+
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+
+        <div class="container body">
+            <div class="main_container">
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <c:if test="#{reservationDetailMB.reservationDetailByResIdAndRoomId()!=null}" >
+                                            <h:form style="margin-top: 20px;">
+                                                <div class="table-responsive">                                                                                                     
+                                                    <h:form>
+                                                        <h1>Update reservation detail</h1>
+                                                        <div>
+                                                            <h:outputLabel value="Reservation ID: "/>
+                                                            <h:outputText value="#{reservationDetailMB.reservationDetailByResIdAndRoomId().reservation.reservationID}"/>
+
+                                                        </div>
+                                                      
+                                                        <div>
+                                                            <h:commandButton class="btn btn-default submit" value="Login" action="#{customerMB.login()}"/>
+                                                        </div>
+                                                    </h:form>
+                                                </div>
+                                            </h:form>
+                                        </c:if> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

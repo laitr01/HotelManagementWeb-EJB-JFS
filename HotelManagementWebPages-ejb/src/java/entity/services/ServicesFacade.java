@@ -7,9 +7,12 @@
 package entity.services;
 
 import entity.AbstractFacade;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,17 @@ public class ServicesFacade extends AbstractFacade<Services> implements Services
     public ServicesFacade() {
         super(Services.class);
     }
+
+    @Override
+    public List<Services> searchName(String nameS) {
+          List<Services> list = new ArrayList<>();
+        Query q = em.createQuery("SELECT s FROM Services s WHERE s.serviceName LIKE :serviceName");
+          q.setParameter("serviceName", "%"+nameS+"%");
+          list = q.getResultList();
+        return list;
+    }
+
+   
+   
     
 }
